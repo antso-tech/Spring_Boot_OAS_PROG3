@@ -1,0 +1,75 @@
+openapi: "3.0.0"
+info: 
+  title: "OpenAPI Sprecification - Exercise 2"
+  version: "3.3.3"
+servers: 
+  - url: "http://localhost:8000"
+    description: Server
+paths: 
+  /ingredients:
+    get:
+      description: Get all ingredients
+      responses:
+        '200':
+          description: Ingredients Lists
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingredients'
+                example: 
+                  Laitue: 
+                    id: 1
+                    name: Laitue
+                    price: 800
+                    ingredientCategory: VEGETABLE
+                  Tomate: 
+                    id: 2
+                    name: Tomate
+                    price: 600
+                    ingredientCategory: VEGETABLE
+                  Poulet: 
+                    id: 3
+                    name: Poulet
+                    price: 4500
+                    ingredientCategory: ANIMAL 
+                  Chocolat:
+                    id: 4
+                    name: Chocolat 
+                    price: 3000
+                    ingredientCategory: OTHER
+                  Beurre:
+                    id: 5
+                    name: Beurre
+                    price: 2500
+                    ingredientCategory: DAILY
+
+components: 
+  schemas:
+     Ingredients: 
+      properties:
+        id: 
+          type: integer
+          format: byte64
+        name: 
+          type: string
+        price: 
+          type: number
+        ingredientCategory:
+          type: string
+          enum: 
+                      - VEGETABLE
+                      - ANIMAL 
+                      - MARINE 
+                      - DAIRY 
+                      - OTHER
+
+
+    
+                  
+                    
+
+
+
+
