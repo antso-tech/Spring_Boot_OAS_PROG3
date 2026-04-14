@@ -51,6 +51,8 @@ paths:
         - name: id
           in : path 
           required: true
+          schema: 
+            type: integer
       responses:
         '200':
           description: Ingredient by Id
@@ -65,7 +67,63 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/NotFound"
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Ingredient.id={id) is not found
+                code: 404
+  /ingredients/{id}/stock:
+              
+    get: 
+      description: Found ingredient by stock
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: at
+          in : query
+          description: stock date time
+          required: true
+          schema: 
+            type: string
+            format: date-time
+        - name: unit
+          in: query 
+          description: stock unit
+          required: true
+          schema: 
+            type: string
+            enum: 
+              - PCS 
+              - KG 
+              - L
+      responses:
+        '200':
+          description: Ingredient by stock
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ingredients"
+        '404':
+          description: Ingredient not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Ingredient.id={id) is not found
+                code: 404
+        '400':
+          description: Bad request, time or unit are required
+          content: 
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+              example: 
+                message: Either mandatory query parameter `at` or `unit` is not provided
+                code: 400
+
 
 components: 
   schemas:
@@ -94,18 +152,19 @@ components:
               - MARINE 
               - DAIRY 
               - OTHER
-      NotFound:
+      Error:
         type: object 
         required: 
         - message
         - code 
         properties:
           message: 
-            type: string
-            example: Ingredient.id is not found
+            type: string   
           code:
             type: integer
-            example: 400
+            
+
+
           
 
 
