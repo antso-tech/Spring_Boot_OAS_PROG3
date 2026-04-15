@@ -147,7 +147,7 @@ paths:
     get:
       tags:
         - Dish
-      description: getAllDishes
+      description: get all dishes
       responses: 
         '200':
           description: List of dishes with all ingredients
