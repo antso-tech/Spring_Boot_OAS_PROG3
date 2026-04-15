@@ -4,7 +4,7 @@ info:
   version: "3.3.3"
 servers: 
   - url: "http://localhost:8000"
-    description: Server
+    description: API Server
 paths: 
   /ingredients:
     get:
@@ -19,7 +19,7 @@ paths:
               schema: 
                 type: array
                 items:
-                  $ref: '#/components/schemas/Ingredients'
+                  $ref: '#/components/schemas/Ingredient'
                 example: 
                   - id: 1
                     name: Laitue
@@ -60,7 +60,7 @@ paths:
             application/json:
               schema:
                 items: 
-                  $ref: "#/components/schemas/Ingredients"
+                  $ref: "#/components/schemas/Ingredient"
                 example: 
                   id: 1
                   name: Laitue
@@ -112,7 +112,7 @@ paths:
           content: 
             application/json:
               schema:
-                $ref: "#/components/schemas/Ingredients"
+                $ref: "#/components/schemas/Ingredient"
               example:
                   id: 1
                   name: Laitue
@@ -143,7 +143,7 @@ paths:
                 message: Ingredient.id={id) is not found
                 code: 404
 
-  /dish:
+  /dishes:
     get:
       tags:
         - Dish
@@ -204,7 +204,7 @@ paths:
                     type: DESSERT
                     ingredientCategory: []
                     
-  /dish/{id}:
+  /dishes/{id}:
     put: 
       tags:
         - Dish
@@ -221,7 +221,7 @@ paths:
          content: 
           application/json:
             schema: 
-              $ref: "#/components/schemas/Ingredients"
+              $ref: "#/components/schemas/Ingredient"
             example:
               - id: 1
                 name: Laitue
@@ -273,7 +273,7 @@ paths:
 
 components: 
   schemas:
-      Ingredients: 
+      Ingredient: 
         required:
          - id
          - name
@@ -321,7 +321,7 @@ components:
           ingredient:
             type: array
             items:
-              $ref: "#/components/schemas/Ingredients"
+              $ref: "#/components/schemas/Ingredient"
       StockMovement: 
         required: 
           - id
