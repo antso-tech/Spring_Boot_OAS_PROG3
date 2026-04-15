@@ -123,7 +123,20 @@ paths:
               example: 
                 message: Either mandatory query parameter `at` or `unit` is not provided
                 code: 400
-
+  /dish:
+    get:
+      description: getAllDishes
+      responses: 
+        '200':
+          description: list of dishes with all ingredients
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dish'
+    put: 
+      description: Attach or Detach Ingredient
 
 components: 
   schemas:
@@ -162,6 +175,29 @@ components:
             type: string   
           code:
             type: integer
+      Dish: 
+        required:
+          - id
+          - name
+          - price
+          - ingredients
+        properties:
+          id:
+            type: integer
+            format: byte64
+            example: 1
+          name:
+            type: string
+            example: Salade Fraîche
+          price: 
+            type: number
+            example: 3500
+          ingredient:
+            type: array
+            items:
+              $ref: "#/components/schemas/Ingredients"
+             
+          
             
 
 
