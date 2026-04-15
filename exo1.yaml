@@ -135,9 +135,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dish'
+                example: 
+                  id: 1
+                  name: Salade Fraîche
+                  type: STARTER
+                  ingredient: 
+                    Laitue: 
+                      
+        
   /dish/{id}:
     put: 
-    
       description: Modify the list of ingredient in dish
       parameters:
         - name: id
@@ -181,8 +188,24 @@ paths:
                     name: Oignon
                     price: 800
                 ingredientCategory: VEGETABLE
-
-
+        '400':
+          description: Ingredient required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: an ingredient is required for dish {id}
+                code: 400
+        '404':
+          description: Ingredient not found
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: “Dish.id={id} is not found”
+                code: 404
 
 components: 
   schemas:
@@ -231,28 +254,16 @@ components:
           id:
             type: integer
             format: byte64
-            example: 1
           name:
             type: string
             example: Salade Fraîche
           price: 
             type: number
-            example: 3500
           ingredient:
             type: array
             items:
               $ref: "#/components/schemas/Ingredients"
-            example:
-              Laitue:
-                id: 1
-                name: Laitue
-                price: 800
-                ingredientCategory: VEGETABLE
-              Tomate:
-                id: 2
-                name: Tomate
-                price: 600
-                ingredientCategory: VEGETABLE
+           
              
           
             
