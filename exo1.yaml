@@ -135,8 +135,54 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dish'
+  /dish/{id}:
     put: 
-      description: Attach or Detach Ingredient
+    
+      description: Modify the list of ingredient in dish
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: 
+            type: integer
+      requestBody:
+         description: associate or dissociate dish Ingredient
+         content: 
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/Ingredients"
+            example:
+              Laitue:
+                id: 1
+                name: Laitue
+                price: 800
+                ingredientCategory: VEGETABLE
+              Oignon:
+                id: 3
+                name: Oignon
+                price: 800
+                ingredientCategory: VEGETABLE
+              
+      responses: 
+        '200':
+          description: Ingredients updated
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Dish"
+                example:
+                  Laitue:
+                    id: 1
+                    name: Laitue
+                    price: 800
+                    ingredientCategory: VEGETABLE
+                  Oignon:
+                    id: 3
+                    name: Oignon
+                    price: 800
+                ingredientCategory: VEGETABLE
+
+
 
 components: 
   schemas:
@@ -196,6 +242,17 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/Ingredients"
+            example:
+              Laitue:
+                id: 1
+                name: Laitue
+                price: 800
+                ingredientCategory: VEGETABLE
+              Tomate:
+                id: 2
+                name: Tomate
+                price: 600
+                ingredientCategory: VEGETABLE
              
           
             
