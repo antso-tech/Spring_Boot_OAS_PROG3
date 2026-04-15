@@ -19,28 +19,23 @@ paths:
                 items:
                   $ref: '#/components/schemas/Ingredients'
                 example: 
-                  Laitue: 
-                    id: 1
+                  - id: 1
                     name: Laitue
                     price: 800
-                    ingredientCategory: VEGETABLE
-                  Tomate: 
-                    id: 2
+                    ingredientCategory: VEGETABLE 
+                  - id: 2
                     name: Tomate
                     price: 600
-                    ingredientCategory: VEGETABLE
-                  Poulet: 
-                    id: 3
+                    ingredientCategory: VEGETABLE 
+                  - id: 3
                     name: Poulet
                     price: 4500
                     ingredientCategory: ANIMAL 
-                  Chocolat:
-                    id: 4
+                  - id: 4
                     name: Chocolat 
                     price: 3000
                     ingredientCategory: OTHER
-                  Beurre:
-                    id: 5
+                  - id: 5
                     name: Beurre
                     price: 2500
                     ingredientCategory: DAILY
@@ -140,13 +135,11 @@ paths:
                   name: Salade Fraîche
                   type: STARTER
                   ingredient: 
-                    Laitue: 
-                      id: 1
+                    - id: 1
                       name: Laitue
                       price: 800
-                      ingredientCategory: VEGETABLE 
-                    Tomate: 
-                      id: 2
+                      ingredientCategory: VEGETABLE     
+                    - id: 2
                       name: Tomate
                       price: 600
                       ingredientCategory: VEGETABLE 
@@ -167,13 +160,11 @@ paths:
             schema: 
               $ref: "#/components/schemas/Ingredients"
             example:
-              Laitue:
-                id: 1
+              - id: 1
                 name: Laitue
                 price: 800
                 ingredientCategory: VEGETABLE
-              Oignon:
-                id: 3
+              - id: 3
                 name: Oignon
                 price: 800
                 ingredientCategory: VEGETABLE
@@ -185,18 +176,16 @@ paths:
             application/json: 
               schema: 
                 $ref: "#/components/schemas/Dish"
-                example:
+              example:
                   id: 1
                   name: Salade Fraîche
                   type: STARTER
-                  ingredient: 
-                    Laitue:
-                      id: 1
+                  ingredient:            
+                    - id: 1
                       name: Laitue
                       price: 800
                       ingredientCategory: VEGETABLE
-                    Oignon:
-                      id: 3
+                    - id: 3
                       name: Oignon
                       price: 800
                       ingredientCategory: VEGETABLE    
@@ -261,6 +250,7 @@ components:
           - id
           - name
           - price
+          - type
           - ingredients
         properties:
           id:
@@ -275,6 +265,15 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/Ingredients"
+      StockMovement: 
+        required: 
+          - id
+          - quantity
+          - type
+          - unit
+          - creation_datetime
+
+
            
              
           
