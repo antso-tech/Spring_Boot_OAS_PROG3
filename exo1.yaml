@@ -79,7 +79,7 @@ paths:
     get: 
       tags:
         - Ingredients
-      description: Found ingredient by stock
+      description: Find ingredient by stock
       parameters: 
         - name: id
           in: path
@@ -108,7 +108,7 @@ paths:
           example: KG
       responses:
         '200':
-          description: Ingredient by stock
+          description: This is the ingredient with it's stock
           content: 
             application/json:
               schema:
@@ -208,7 +208,7 @@ paths:
     put: 
       tags:
         - Dish
-      description: Modify the list of ingredient in dish
+      description: Update the list of ingredient in dish
       parameters:
         - name: id
           in: path
@@ -217,7 +217,7 @@ paths:
             type: integer
           example: 1
       requestBody:
-         description: associate or dissociate dish Ingredient
+         description: All ingredients to associate
          content: 
           application/json:
             schema: 
