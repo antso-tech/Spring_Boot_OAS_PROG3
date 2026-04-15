@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info: 
-  title: "OpenAPI Sprecification - Exercise 2"
+  title: "TD OpenAPI Sprecification"
   version: "3.3.3"
 servers: 
   - url: "http://localhost:8000"
