@@ -235,16 +235,8 @@ components:
               - MARINE 
               - DAIRY 
               - OTHER
-      Error:
-        type: object 
-        required: 
-        - message
-        - code 
-        properties:
-          message: 
-            type: string   
-          code:
-            type: integer
+          stockMovement: 
+            $ref: "#/components/schemas/StockMovement"
       Dish: 
         required:
           - id
@@ -272,6 +264,38 @@ components:
           - type
           - unit
           - creation_datetime
+        properties: 
+          id: 
+            type: integer
+            format: byte64
+          quantity: 
+            type: number
+          type:
+            type: string
+            enum:
+              - IN
+              - OUT
+          unit: 
+            type: string
+            enum: 
+              - KG
+              - LG
+              - PCS
+          creationDatetime:
+             type: string
+             format: date-time
+      Error:
+        type: object 
+        required: 
+        - message
+        - code 
+        properties:
+          message: 
+            type: string   
+          code:
+            type: integer
+
+
 
 
            
