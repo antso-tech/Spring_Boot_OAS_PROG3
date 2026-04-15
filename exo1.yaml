@@ -54,9 +54,13 @@ paths:
           content: 
             application/json:
               schema:
-                type: array
                 items: 
                   $ref: "#/components/schemas/Ingredients"
+                example: 
+                  id: 1
+                  name: Laitue
+                  price: 800
+                  ingredientCategory: VEGETABLE 
         '404':
           description: Ingredient not found
           content:
@@ -100,15 +104,17 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Ingredients"
-        '404':
-          description: Ingredient not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
               example:
-                message: Ingredient.id={id) is not found
-                code: 404
+                  id: 1
+                  name: Laitue
+                  price: 800
+                  ingredientCategory: VEGETABLE 
+                  stockMovement:
+                    - id: 1
+                      quantity: 0.2
+                      type: OUT
+                      unit: KG
+                      creationDatetime: 2024-01-06T12:00:00Z
         '400':
           description: Bad request, time or unit are required
           content: 
@@ -118,6 +124,16 @@ paths:
               example: 
                 message: Either mandatory query parameter `at` or `unit` is not provided
                 code: 400
+        '404':
+          description: Ingredient not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Ingredient.id={id) is not found
+                code: 404
+
   /dish:
     get:
       description: getAllDishes
@@ -131,18 +147,51 @@ paths:
                 items:
                   $ref: '#/components/schemas/Dish'
                 example: 
-                  id: 1
-                  name: Salade Fraîche
-                  type: STARTER
-                  ingredient: 
-                    - id: 1
-                      name: Laitue
-                      price: 800
-                      ingredientCategory: VEGETABLE     
-                    - id: 2
-                      name: Tomate
-                      price: 600
-                      ingredientCategory: VEGETABLE 
+                  - id: 1
+                    name: Salade Fraîche
+                    price: 3500
+                    type: STARTER
+                    ingredient: 
+                      - id: 1
+                        name: Laitue
+                        price: 800
+                        ingredientCategory: VEGETABLE     
+                      - id: 2
+                        name: Tomate
+                        price: 600
+                        ingredientCategory: VEGETABLE 
+                  - id: 2
+                    name: Poulet Grillé 
+                    price: 120000
+                    type: MAIN
+                    ingredient: 
+                      - id: 3
+                        name: Poulet
+                        price: 4500
+                        ingredientCategory: ANIMAL
+                  - id: 3
+                    name: Riz aux légumes
+                    price: null
+                    type: MAIN
+                    ingredient: []
+                  - id: 4 
+                    name: Gâteau aux chocolat
+                    price: 14000
+                    type: DESSERT
+                    ingredient: 
+                      - id: 4
+                        name: Chocolat
+                        price: 3000
+                        ingredientCategory: OTHER
+                      - id: 5 
+                        name: Beurre 
+                        price: 3000 
+                        ingredientCategory: DAIRY 
+                  - id: 5
+                    name: Salade de fruits
+                    price: null
+                    type: DESSERT
+                    ingredientCategory: []
                     
   /dish/{id}:
     put: 
@@ -220,13 +269,10 @@ components:
           id: 
             type: integer
             format: byte64
-            example: 1
           name: 
             type: string
-            example: Laitue
           price: 
             type: number
-            example : 800
           ingredientCategory:
             type: string
             enum: 
@@ -253,6 +299,12 @@ components:
             example: Salade Fraîche
           price: 
             type: number
+          type:
+            type: string 
+            enum: 
+              - MAIN
+              - STARTER
+              - DESSERT
           ingredient:
             type: array
             items:
