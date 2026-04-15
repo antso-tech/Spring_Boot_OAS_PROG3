@@ -150,7 +150,7 @@ paths:
       description: getAllDishes
       responses: 
         '200':
-          description: list of dishes with all ingredients
+          description: List of dishes with all ingredients
           content: 
             application/json:
               schema:
@@ -310,7 +310,6 @@ components:
             format: byte64
           name:
             type: string
-            example: Salade Fraîche
           price: 
             type: number
           type:
