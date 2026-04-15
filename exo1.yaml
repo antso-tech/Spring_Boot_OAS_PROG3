@@ -8,6 +8,8 @@ servers:
 paths: 
   /ingredients:
     get:
+      tags:
+        - Ingredients
       description: Get all ingredients
       responses:
         '200':
@@ -41,6 +43,8 @@ paths:
                     ingredientCategory: DAILY
   /ingredients/{id}:
     get: 
+      tags:
+        - Ingredients
       description: Find ingredient by Id 
       parameters:
         - name: id
@@ -48,6 +52,7 @@ paths:
           required: true
           schema: 
             type: integer
+          example: 1
       responses:
         '200':
           description: Ingredient by Id
@@ -70,9 +75,10 @@ paths:
               example:
                 message: Ingredient.id={id) is not found
                 code: 404
-  /ingredients/{id}/stock:
-              
+  /ingredients/{id}/stock:     
     get: 
+      tags:
+        - Ingredients
       description: Found ingredient by stock
       parameters: 
         - name: id
@@ -80,6 +86,7 @@ paths:
           required: true
           schema:
             type: integer
+          example: 1
         - name: at
           in : query
           description: stock date time
@@ -87,6 +94,7 @@ paths:
           schema: 
             type: string
             format: date-time
+            example: 2024-01-06T12:00:00Z
         - name: unit
           in: query 
           description: stock unit
@@ -97,6 +105,7 @@ paths:
               - PCS 
               - KG 
               - L
+          example: KG
       responses:
         '200':
           description: Ingredient by stock
@@ -136,6 +145,8 @@ paths:
 
   /dish:
     get:
+      tags:
+        - Dish
       description: getAllDishes
       responses: 
         '200':
@@ -195,6 +206,8 @@ paths:
                     
   /dish/{id}:
     put: 
+      tags:
+        - Dish
       description: Modify the list of ingredient in dish
       parameters:
         - name: id
@@ -202,6 +215,7 @@ paths:
           required: true
           schema: 
             type: integer
+          example: 1
       requestBody:
          description: associate or dissociate dish Ingredient
          content: 
